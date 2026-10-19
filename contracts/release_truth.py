@@ -40,7 +40,7 @@ def inconclusive(reason):
 
 def fetch(url, limit):
     r = gl.nondet.web.get(url)
-    if r.status != 200 or not 0 < len(r.body) <= limit:
+    if r.status != 200 or r.body is None or not 0 < len(r.body) <= limit:
         raise ValueError("unavailable or oversized evidence")
     return r.body.decode("utf-8")
 
@@ -143,10 +143,14 @@ class ReleaseTruth(gl.Contract):
         pass
 
     @gl.public.write
-    def review(self, manifest_json: str) -> str:
+    def review(self, manifest_json: str, attempt: int = 0) -> str:
+        require(type(attempt) is int and 0 <= attempt <= 2, "attempt must be 0, 1 or 2")
         m = manifest(manifest_json)
         policy_hash = digest(POLICY)
-        request_id = digest(canon({"manifest": m, "policy_hash": policy_hash}))
+        request_id = digest(canon({"manifest": m, "policy_hash": policy_hash, "attempt": attempt}))
+        if attempt > 0:
+            previous = digest(canon({"manifest": m, "policy_hash": policy_hash, "attempt": attempt - 1}))
+            require(previous in self.records and json.loads(self.records[previous])["result"]["outcome"] == "INCONCLUSIVE", "retry requires previous inconclusive")
         require(request_id not in self.records, "immutable review already exists")
         def leader():
             return inspect(m)
@@ -158,7 +162,7 @@ class ReleaseTruth(gl.Contract):
             except Exception:
                 return False
         result = gl.vm.run_nondet_unsafe(leader, validator)
-        record = {"request_id": request_id, "manifest": m, "policy_hash": policy_hash, "result": result}
+        record = {"attempt": attempt, "request_id": request_id, "manifest": m, "policy_hash": policy_hash, "result": result}
         record["decision_hash"] = digest(canon(record))
         self.records[request_id] = canon(record)
         return request_id

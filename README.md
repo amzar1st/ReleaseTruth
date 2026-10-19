@@ -15,7 +15,7 @@ Uncertainty takes precedence over all definitive outcomes. Otherwise contradicti
 
 ## API
 
-- `review(manifest_json: str) -> str`: permissionless review; returns content-addressed request ID. Each ID is immutable and cannot be overwritten.
+- `review(manifest_json: str, attempt: int = 0) -> str`: permissionless review; returns content-addressed request ID. Each ID is immutable and cannot be overwritten.
 - `get_review(request_id: str) -> str`: canonical JSON record, or empty string if missing.
 - `get_policy() -> str`: the policy and its SHA-256 commitment. Policy is fixed in the deployed source, with no administrative override.
 
@@ -33,7 +33,7 @@ The GitHub compare endpoint establishes the ancestor relationship and complete b
 
 Each validator independently fetches the comparison, code/spec files and notes, verifies all hashes, and calls its own model with the same immutable policy. The custom equivalence function requires exact agreement on evidence fingerprint, failure reason, outcome and every changed file's classification. Quotations and explanatory prose may differ. Model output must satisfy exact schema, full file coverage, bounded explanations and literal source citation checks. Disagreement rejects consensus; it is not silently converted into an accepted verdict.
 
-The request hash commits the canonical manifest and policy hash. The decision hash commits the complete canonical record before adding `decision_hash`, including findings. Consumers must check the transaction is finalized and `result.outcome`, not just record existence or transaction submission.
+The request hash commits the canonical manifest, policy hash and attempt number. Attempts 1 and 2 require the preceding immutable record to be INCONCLUSIVE; definitive outcomes cannot be retried. The decision hash commits the complete canonical record before adding `decision_hash`, including findings. Consumers must check the transaction is finalized and `result.outcome`, not just record existence or transaction submission.
 
 ## Bounds
 
@@ -44,12 +44,11 @@ At most 20 commits, 8 changed files, 17 hash entries, 12,000 manifest characters
 ```sh
 python -m pip install -r requirements-dev.txt
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
-python -m genvm_linter --help # alternatively use the genvm-lint executable
- genvm-lint check contracts/release_truth.py
+genvm-lint check contracts/release_truth.py
 ```
 
 See [Security](SECURITY.md), [deployment](docs/DEPLOYMENT.md), [official sources](docs/REFERENCES.md) and [live evidence](docs/EVIDENCE.md). Direct-mode tests use official GenLayer SDK mocks; they are separate from live Full Consensus evidence.
 
 ## Integration and limitations
 
-This is a reusable read primitive for release gates, dependency monitors or governance workflows. No token transfers, upgrades or hidden owner privileges are present. Consumers choose their own consequences. Evidence is public; do not submit secrets. A source review does not execute tests or prove absence of vulnerabilities. Correlated LLM errors, prompt injection and GitHub availability remain risks. A finalized inconclusive record is retained, not rewritten; an availability failure may require a new deployment for the identical request. This conservative immutable-record tradeoff is explicit.
+This is a reusable read primitive for release gates, dependency monitors or governance workflows. No token transfers, upgrades or hidden owner privileges are present. Consumers choose their own consequences. Evidence is public; do not submit secrets. A source review does not execute tests or prove absence of vulnerabilities. Correlated LLM errors, prompt injection and GitHub availability remain risks. A finalized inconclusive record is retained, not rewritten. Up to two sequential retries allow recovery without replacing history. After all three attempts are inconclusive, this deployment will not accept further retries of the same manifest.
