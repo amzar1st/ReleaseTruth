@@ -1,0 +1,41 @@
+{
+  "attempt": 0,
+  "decision_hash": "595e19d21ba3b70544cbd2bd639c506b8817141c201b2b4101c7cc7fcdb6ff01",
+  "manifest": {
+    "base": "223f9d88535192545aa4aa031c1e4d12194a1d87",
+    "hashes": {
+      "b:demo/RELEASE_NOTES.md": "275e4310418fb3f7b225e42b9cb5fe14cf17b55fad1026c9a4400f77cc1543ff",
+      "b:demo/access.py": "b6a56f22120a6daa22c89e87ab99473359ac66ebf805293632cb2dea0d40b620",
+      "h:demo/RELEASE_NOTES.md": "6a37b7e4b31a51388f5c00579d6f67d2a08dc3e8657e3f834842a1002ec179e4",
+      "h:demo/access.py": "a254ed9182ba8d90eda7b4d1e157679de436316a21298b5fe2503b27b2ff963e"
+    },
+    "head": "64c44f87de81d6c00a8bf764876ae6e81142ab71",
+    "notes": "demo/RELEASE_NOTES.md",
+    "repo": "amzar1st/ReleaseTruth"
+  },
+  "policy_hash": "fedf0a0b84c3981ae1a326cc23c8a0f6bc1e065237a73776fb4f1920fa59eb81",
+  "request_id": "0f9578e9a8cf84b092c7f25735ff6680dd8b2cbc06b6fd1e06917635150c941b",
+  "result": {
+    "findings": [
+      {
+        "after_quote": "# ExampleTool 1.1\nPublishing remains restricted to administrators. This release only updates documentation and makes no authorization behavior changes.\n",
+        "before_quote": "# ExampleTool 1.0\nPublishing is restricted to administrators.\n",
+        "classification": "CONTRADICTED",
+        "explanation": "The release notes file now claims there are no authorization behavior changes and that publishing remains admin-restricted, but the changed source in this release shows authorization behavior changed.",
+        "notes_quote": "Publishing remains restricted to administrators. This release only updates documentation and makes no authorization behavior changes.",
+        "path": "demo/RELEASE_NOTES.md"
+      },
+      {
+        "after_quote": "def can_publish(is_admin: bool) -> bool:\n    return True\n",
+        "before_quote": "def can_publish(is_admin: bool) -> bool:\n    return is_admin\n",
+        "classification": "CONTRADICTED",
+        "explanation": "Behavior changed materially: publishing was previously allowed only when is_admin is true, and now is always allowed. The notes explicitly claim no authorization behavior change and continued admin restriction, which the code contradicts.",
+        "notes_quote": "Publishing remains restricted to administrators. This release only updates documentation and makes no authorization behavior changes.",
+        "path": "demo/access.py"
+      }
+    ],
+    "fingerprint": "595087c857ee267dcc91263d739a311362ad45852efefeedb5998eba944c29db",
+    "outcome": "MISLEADING",
+    "reason": "REVIEWED"
+  }
+}

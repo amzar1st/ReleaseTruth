@@ -1,0 +1,11 @@
+{
+  "source_commit": "d283037163583bc3cf234eb2de2869c536c6c27c",
+  "source_url": "https://raw.githubusercontent.com/amzar1st/ReleaseTruth/d283037163583bc3cf234eb2de2869c536c6c27c/contracts/release_truth.py",
+  "source_sha256": "b72593d1b103ad0f09cd70fc8a4cff01c108538479af7eef2ed9d76d8727cb55",
+  "bytes": 11209,
+  "github_equals_local_equals_explorer": true,
+  "decision_hash_verified": true,
+  "request_hash_verified": true,
+  "decision_hash": "595e19d21ba3b70544cbd2bd639c506b8817141c201b2b4101c7cc7fcdb6ff01",
+  "request_id": "0f9578e9a8cf84b092c7f25735ff6680dd8b2cbc06b6fd1e06917635150c941b"
+}

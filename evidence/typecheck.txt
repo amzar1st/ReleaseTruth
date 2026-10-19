@@ -1,0 +1,3 @@
+Type checking release_truth.py...
+
+✓ No type errors found

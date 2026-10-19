@@ -1,0 +1,132 @@
+- navigation:
+  - link "GenLayer Logo GenLayer Studio Explorer":
+    - /url: /
+    - img "GenLayer Logo"
+    - generic: GenLayer Studio Explorer
+  - link "Dashboard":
+    - /url: /
+    - generic: Dashboard
+  - link "Transactions":
+    - /url: /txs
+    - generic: Transactions
+  - link "Validators":
+    - /url: /validators
+    - generic: Validators
+  - link "Contracts":
+    - /url: /contracts
+    - generic: Contracts
+  - link "Providers":
+    - /url: /providers
+    - generic: Providers
+  - button "Search... Ctrl+K":
+    - generic: Search...
+    - generic: Ctrl+K
+  - button "Toggle theme":
+    - generic: Toggle theme
+- generic: "Transactions: 995,519"
+- generic: "Validators: 20"
+- generic: "Contracts: 178,460"
+- generic: Connected
+- main:
+  - link "Back to transactions":
+    - /url: /txs
+    - text: Back to transactions
+  - heading "Transaction Details" [level=1]
+  - code: "0x50a3009dc8abbd80c848a77c41a87bda52fb4415658a2180786ef67014db84b5"
+  - button "Copy to clipboard":
+  - generic: FINALIZED
+  - generic: Call
+  - tablist:
+    - tab "Overview" [selected]:
+      - text: Overview
+    - tab "Monitoring":
+      - text: Monitoring
+    - tab "Consensus":
+      - text: Consensus
+    - tab "Data":
+      - text: Data
+    - tab "Related (0)":
+      - text: Related (0)
+  - tabpanel "Overview":
+    - generic: Hash
+    - generic: "0x50a3009dc8abbd80c848a77c41a87bda52fb4415658a2180786ef67014db84b5"
+    - button "Copy to clipboard":
+    - generic: Status
+    - generic: FINALIZED
+    - generic: Type
+    - generic: Call
+    - generic: From
+    - link "0xd8E6cE9057215C5d48A7d7cFd756c0E0f75fC8C4":
+      - /url: /address/0xd8E6cE9057215C5d48A7d7cFd756c0E0f75fC8C4
+    - button "Copy to clipboard":
+    - generic: To
+    - link "0x003f2bA80D09604c7b131f99FB4EFD5a3136cBbD":
+      - /url: /address/0x003f2bA80D09604c7b131f99FB4EFD5a3136cBbD
+    - button "Copy to clipboard":
+    - generic: Value
+    - generic: 0 GEN
+    - generic: Nonce
+    - generic: "1"
+    - generic: Gas Limit
+    - generic: "-"
+    - generic: Created At
+    - generic: Oct 19, 2026, 4:29:59 PM
+    - generic: Execution Mode
+    - generic: Normal
+    - generic: Rotation Count
+    - generic: "0"
+    - generic: Initial Validators
+    - generic: "5"
+    - generic: Consensus Result
+    - generic: Accepted
+    - heading "Input Data" [level=4]
+    - button "decoded"
+    - button "hex"
+    - button "raw"
+    - button "Export JSON":
+      - text: Export JSON
+    - button "Copy":
+      - text: Copy
+    - generic: Method
+    - code: review
+    - generic: Parameters
+    - table:
+      - rowgroup:
+        - row "# Value":
+          - columnheader "#"
+          - columnheader "Value"
+      - rowgroup:
+        - 'row "0 {\"base\":\"223f9d88535192545aa4aa031c1e4d12194a1d87\",\"hashes\":{\"b:demo/RELEASE_NOTES.md\":\"275e4310418fb3f7b225e42b9cb5fe14cf17b55fad1026c9a4400f77cc1543ff\",\"b:demo/access.py\":\"b6a56f22120a6daa22c89e87ab99473359ac66ebf805293632cb2dea0d40b620\",\"h:demo/RELEASE_NOTES.md\":\"6a37b7e4b31a51388f5c00579d6f67d2a08dc3e8657e3f834842a1002ec179e4\",\"h:demo/access.py\":\"a254ed9182ba8d90eda7b4d1e157679de436316a21298b5fe2503b27b2ff963e\"},\"head\":\"64c44f87de81d6c00a8bf764876ae6e81142ab71\",\"notes\":\"demo/RELEASE_NOTES.md\",\"repo\":\"amzar1st/ReleaseTruth\"}"':
+          - cell "0"
+          - 'cell "{\"base\":\"223f9d88535192545aa4aa031c1e4d12194a1d87\",\"hashes\":{\"b:demo/RELEASE_NOTES.md\":\"275e4310418fb3f7b225e42b9cb5fe14cf17b55fad1026c9a4400f77cc1543ff\",\"b:demo/access.py\":\"b6a56f22120a6daa22c89e87ab99473359ac66ebf805293632cb2dea0d40b620\",\"h:demo/RELEASE_NOTES.md\":\"6a37b7e4b31a51388f5c00579d6f67d2a08dc3e8657e3f834842a1002ec179e4\",\"h:demo/access.py\":\"a254ed9182ba8d90eda7b4d1e157679de436316a21298b5fe2503b27b2ff963e\"},\"head\":\"64c44f87de81d6c00a8bf764876ae6e81142ab71\",\"notes\":\"demo/RELEASE_NOTES.md\",\"repo\":\"amzar1st/ReleaseTruth\"}"'
+        - row "1 0":
+          - cell "1"
+          - cell "0"
+    - heading "GenVM Execution" [level=4]
+    - generic: Execution Result
+    - generic: SUCCESS
+    - generic: Result Code
+    - generic: Return
+    - generic: Return Value
+    - code: "\"0f9578e9a8cf84b092c7f25735ff6680dd8b2cbc06b6fd1e06917635150c941b\""
+    - generic: Stdout
+    - generic: (empty)
+    - generic: Stderr
+    - generic: (empty)
+    - heading "Equivalence Principle Outputs" [level=4]
+    - generic: "0"
+    - generic: Return
+    - code: "{\"findings\":[{\"after_quote\":\"# ExampleTool 1.1\\nPublishing remains restricted to administrators. This release only updates documentation and makes no authorization behavior changes.\\n\"\"before_quote\":\"# ExampleTool 1.0\\nPublishing is restricted to administrators.\\n\"\"classification\":\"CONTRADICTED\"\"explanation\":\"The release notes file now claims there are no authorization behavior changes and that publishing remains admin-restricted, but the changed source in this release shows authorization behavior changed.\"\"notes_quote\":\"Publishing remains restricted to administrators. This release only updates documentation and makes no authorization behavior changes.\"\"path\":\"demo/RELEASE_NOTES.md\"},{\"after_quote\":\"def can_publish(is_admin: bool) -> bool:\\n return True\\n\"\"before_quote\":\"def can_publish(is_admin: bool) -> bool:\\n return is_admin\\n\"\"classification\":\"CONTRADICTED\"\"explanation\":\"Behavior changed materially: publishing was previously allowed only when is_admin is true, and now is always allowed. The notes explicitly claim no authorization behavior change and continued admin restriction, which the code contradicts.\"\"notes_quote\":\"Publishing remains restricted to administrators. This release only updates documentation and makes no authorization behavior changes.\"\"path\":\"demo/access.py\"},]\"fingerprint\":\"595087c857ee267dcc91263d739a311362ad45852efefeedb5998eba944c29db\"\"outcome\":\"MISLEADING\"\"reason\":\"REVIEWED\"}"
+    - img "Pending — reached":
+    - generic: Pending
+    - img "Proposing — reached":
+    - generic: Proposing
+    - img "Committing — reached":
+    - generic: Committing
+    - img "Revealing — reached":
+    - generic: Revealing
+    - img "Accepted — reached":
+    - generic: Accepted
+    - button "Finalized — Oct 19, 2026, 4:30:43 PM"
+    - generic: Finalized
+- alert
